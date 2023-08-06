@@ -1,7 +1,7 @@
 let cardsData = [{
 	id: 1,
 	image: './images/app-page/pexels-negative-space-97077-2-1673936-scaled.jpg',
-	avatar: 'https://avatars.dicebear.com/api/initials/john%20doe.svg',
+	avatar: 'https://avatars.dicebear.com/api/initials/64.svg',
 	user: {
 	  title: 'Base64'
 	},
@@ -10,7 +10,7 @@ let cardsData = [{
   {
 	id: 2,
 	image: './images/app-page/shutterstock_1165235053.jpg',
-	avatar: 'https://avatars.dicebear.com/api/initials/john%20doe.svg',
+	avatar: 'https://avatars.dicebear.com/api/initials/HX.svg',
 	user: {
 	  title: 'Hexidecimal'
 	},
@@ -19,7 +19,7 @@ let cardsData = [{
   {
 	id: 3,
 	image: './images/app-page/Encoding.webp',
-	avatar: 'https://avatars.dicebear.com/api/initials/john%20doe.svg',
+	avatar: 'https://avatars.dicebear.com/api/initials/WW.svg',
 	user: {
 	  title: 'URL'
 	},
@@ -28,7 +28,7 @@ let cardsData = [{
   {
 	id: 4,
 	image: './images/app-page/encode1.jpg',
-	avatar: 'https://avatars.dicebear.com/api/initials/john%20doe.svg',
+	avatar: 'https://avatars.dicebear.com/api/initials/01.svg',
 	user: {
 	  title: 'Binary'
 	},

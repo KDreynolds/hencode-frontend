@@ -2,6 +2,8 @@
 	--bg: #071e36;
 	--card-bg: #041221;
   }
+
+  
   
   body {
 	background: var(--bg);
@@ -62,5 +64,42 @@
   p.title.is-4 {
 	margin-top: 10px !important;
   }
-  
+
+  .main-content {
+    padding: 20px;
+    padding-left: 200px;
+    padding-right: 200px;  /* Adjust as needed */
+  }
+
+  .white-text {
+    color: white;
+  }
+
+  .shit {
+   padding-top: 70px;
+   padding-bottom: 15px;
+  } 
+
+  .poop {
+    padding-bottom: 160px;
+  }
+
+  .title.is-3 {
+    color: ghostwhite;
+    padding-top: 60px;
+  }
+
+
+  .title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;  
+  }
+
+  .subtitle {
+    font-family: 'Victor Mono';
+    font-weight: 400;
+  }
+
+
+
   

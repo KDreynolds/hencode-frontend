@@ -19,7 +19,7 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="#">
+          <a class="navbar-item" href="index.html">
             <img src="./images/app-page/hencode-low-resolution-logo-white-on-transparent-background.png" alt="Logo">
           </a>
           <span class="navbar-burger burger" data-target="navbarMenu">
@@ -30,40 +30,81 @@
         </div>
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item is-active">
+            <a class="navbar-item" href="index.html">
               Home
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" href="base64.html">
               Base64
             </a>
-            <a class="navbar-item">
-              Hexidecimal
+            <a class="navbar-item" href="hex.html">
+              Hexadecimal
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" href="binary.html">
               Binary
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" href="url.html">
               URL
             </a>
           </div>
         </div>
       </div>
-    </nav>
-    <!-- END NAV -->
-
-    <div class="container">
+        </nav>
+        <!-- END NAV -->
       
+      
+        <div id="app">  
+        <div class="container">
+          <div class="content is-medium">
+            <center>
+            <p class="title is-3">Binary Encode/Decode</p>
+            </center>
+          </div>
+          <div class="container main-content">
+            <div class="shit">
+          <!-- Textarea input box -->
+          <div class="field">
+            <label class="label white-text">Input</label>
+              <div class="control">
+                  <textarea class="textarea" placeholder="Enter some text..." v-model="inputText"></textarea>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Submit Button -->
+          <div class="columns is-centered">
+            <div class="column is-narrow">
+                <button class="button is-primary" @click="handleEncode">Encode</button>
+            </div>
+            <div class="column is-narrow">
+                <button class="button is-info" @click="handleDecode">Decode</button>
+            </div>
+        </div>
+        
+      
+          <!-- Output box -->
+          <div class="field">
+            <div class="poop">
+            <label class="label white-text">Output</label>
+              <div class="control">
+                  <textarea class="textarea" placeholder="Output will be shown here..." v-model="outputText" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+      
+      
 
     <!-- BEGIN FOOTER -->
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
           <div class="soc">
-            <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+            <a href="www.github.com/kdreynolds"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
+            <!-- <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a> -->
+            <!-- <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a> -->
+            <a href="www.twitter.com/imyerf"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
           </div>
           <p>
             <strong>Site</strong> by <a href="http://jgthms.com">Kyle Reynolds</a>.
@@ -78,11 +119,73 @@
     <!-- Using Vue to populate cards to reduce redundant code -->
     <script>
       var app = new Vue({
-        el: '#app',
-        data: {
-          cardData: cardsData
+    el: '#app',
+    data: {
+        cardData: cardsData,
+        inputText: '',  
+        outputText: ''  
+    },
+    methods: {
+      handleEncode: async function() {
+    console.log("handleEncode called with input:", this.inputText);  // Log 1
+
+    try {
+        const response = await fetch("https://hencode_fastapi-1-m1923832.deta.app/api/encode", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                input: this.inputText,
+                type: "binary"
+            })
+        });
+
+        console.log("API Response:", response);  // Log 2
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Decoded Data:", data);  // Log 3
+            this.outputText = data.encoded;
+        } else {
+            console.error('API responded with', response.status, response.statusText);
         }
-      })
+    } catch (error) {
+        console.error('Error during the fetch:', error);
+    }
+},
+handleDecode: async function() {
+    console.log("handleDecode called with input:", this.inputText);  // Log 1
+
+    try {
+        const response = await fetch("https://hencode_fastapi-1-m1923832.deta.app/api/decode", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                input: this.inputText,
+                type: "binary"
+            })
+        });
+
+        console.log("API Response:", response);  // Log 2
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Decoded Data:", data);  // Log 3
+            this.outputText = data.decoded;
+        } else {
+            console.error('API responded with', response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error('Error during the fetch:', error);
+    }
+}
+        // If you have a decode endpoint, create a similar handleDecode function
+    }
+})
+
 
     </script>
   </body>
